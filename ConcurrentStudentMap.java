@@ -6,8 +6,7 @@ public class ConcurrentStudentMap {
     public static synchronized void insert(String name, int mark) {
         keys[count] = name;
         values[count] = mark;
-        count++;
-    }
+        count++;}
     public static void main(String[] args) throws InterruptedException {
         Thread[] threads = new Thread[5];
         long startTime = System.currentTimeMillis();
@@ -15,18 +14,14 @@ public class ConcurrentStudentMap {
             final int threadId = t;
             threads[t] = new Thread(() -> {
                 for (int i = 0; i < 1000; i++) {
-                    insert("Student_" + threadId + "_" + i, 70);
-                }
+                    insert("Student_" + threadId + "_" + i, 70);}
             });
-            threads[t].start();
-        }
+            threads[t].start();}
         for (int t = 0; t < 5; t++) {
-            threads[t].join();
-        }
+            threads[t].join();}
         long endTime = System.currentTimeMillis();
         System.out.println("Threads: 5");
         System.out.println("Expected Entries: 5000");
         System.out.println("Actual Entries: " + count);
         System.out.println("Execution Time: " + (endTime - startTime) + " ms");
-    }
-}
+}}
